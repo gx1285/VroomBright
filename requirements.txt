@@ -3,3 +3,4 @@ numpy
 replit
 Flask
 urllib3
+async_google_trans_new
