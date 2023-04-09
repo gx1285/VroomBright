@@ -9,7 +9,7 @@ Token = environ['Token']
 class VroomBright(commands.Bot):
   async def setup_hook(self):
     await keep_alive()
-    for name in listdir("cogs"):
+    for name in listdir("VroomBright/cogs"):
       if not name.startswith(("_", ".")):
         await bot.load_extension(
           f"cogs.{name[:-3] if name.endswith('.py') else name}"
