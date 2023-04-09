@@ -37,7 +37,10 @@ class translate(commands.Cog):
     @app_commands.command(name="translate", description="翻訳をします。")
     async def translate(self, i: discord.Interaction, lang: str, text: str):
         g = async_google_trans_new.AsyncTranslator()
-        await i.response.send_message(content=await g.translate(text, lang))
+        conf_embed = discord.Embed(title="翻訳結果", color=discord.Color.green())
+        conf_embed.add_field(name=f"{lang}へ翻訳", value=await g.translate(text, lang))
+  
+        await i.response.send_message(embed=conf_embed)
 
 
 async def setup(bot: commands.Bot) -> None:
