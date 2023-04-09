@@ -41,7 +41,7 @@ async def bot_ready():
       [
         f"/help | {len(bot.guilds)} サーバー",
         f"/help | {len(bot.users)} ユーザー数",
-        f"/help | {round(bot.latency * 1000)}ms"
+        f"/help | {round(bot.latency * 1000)}ms",
       ]
     )
   )
