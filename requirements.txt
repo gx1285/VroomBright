@@ -1,0 +1,5 @@
+discord
+numpy
+replit
+Flask
+urllib3
