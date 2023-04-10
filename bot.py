@@ -2,12 +2,14 @@ from discord.ext import commands, tasks
 from discord import Intents, Status, Activity, ActivityType, Game, HTTPException
 from itertools import cycle
 from os import environ, listdir
+from datetime import datetime
 from webserver import keep_alive
 
 Token = environ['Token']
 
 class VroomBright(commands.Bot):
   async def setup_hook(self):
+    self.uptime = 0
     await keep_alive()
     for name in listdir("VroomBright/cogs"):
       if not name.startswith(("_", ".")):
@@ -35,6 +37,7 @@ async def status_swap(cycle_d):
 
 @bot.listen(name="on_ready")
 async def bot_ready():
+  bot.uptime = int(datetime.now().timestamp())
   print("起動完了")
   await status_swap.start(
     cycle(
