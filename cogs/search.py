@@ -1,16 +1,8 @@
 from discord.ext import commands
 from discord import app_commands
 import requests
-from os import environ
+from bs4 import BeautifulSoup
 import discord
-
-CSE = environ['cse']
-APIKEY = environ['apikey1']
-
-def get_url(query):
-    url = f"https://www.googleapis.com/customsearch/v1?key={APIKEY}&cx={CSE}&q={query}&num=1&fields=items(link)"
-    response = requests.get(url).json()
-    return response['items'][0]['link']
 
 class search(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -19,8 +11,17 @@ class search(commands.Cog):
     @app_commands.command(name="search", description="入力した内容で最も近い候補を表示します。")
     @app_commands.describe(search="検索したい内容を入力してください。")
     async def search(self, i: discord.Interaction, search: str):
-        url = get_url(search)
-        await i.response.send_message(url)
+        url = f"https://www.google.com/search?q={search}"
+        headers = {"User-Agent": "VroomBright/1.0(DiscordBot)"}
+        res = requests.get(url, headers=headers)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        titles = [title.get_text() for title in soup.find_all('h3')]
+
+        if len(titles) == 0:
+            await i.response.send_message(f"'{search}'に関する検索結果は見つかりませんでした。")
+        else:
+            response = "\n".join(titles)
+            await i.response.send_message(f"'{search}'での検索結果の上位表示は以下の通りです。\n{response}")
 
 
 async def setup(bot: commands.Bot) -> None:
