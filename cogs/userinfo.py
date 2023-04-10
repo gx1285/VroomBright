@@ -24,14 +24,14 @@ class userinfo(commands.Cog):
                 icon_url=user.default_avatar.url,
             )
             embed.set_thumbnail(url=user.default_avatar.url)
-            if user.bot is True:
-                b = "はい"
-            else:
-                b = "いいえ"
-            if user.system is True:
-                c = "はい"
-            else:
-                c = "いいえ"
+        if user.bot is True:
+            b = "はい"
+        else:
+            b = "いいえ"
+        if user.system is True:
+            c = "はい"
+        else:
+            c = "いいえ"
         embed.add_field(
             name="アカウント作成日時", value=discord.utils.format_dt(user.created_at, "f")
         )
