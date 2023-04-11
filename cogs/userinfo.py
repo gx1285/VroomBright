@@ -10,7 +10,7 @@ class userinfo(commands.Cog):
     @app_commands.describe(user="ユーザーを指定してください。")
     @app_commands.command(name="userinfo", description="指定したユーザーの情報を表示します。")
     async def ping(self, i: discord.Interaction, user: discord.User):
-        embed = discord.Embed(title=f"{user.name}のユーザー情報")
+        embed = discord.Embed(title=f"{user.name}のユーザー情報", url=f"https://discord.com/users/{user.id}")
         base = "https://media.discordapp.net/avatars"
         if hasattr(user.avatar, "key"):
             embed.set_author(

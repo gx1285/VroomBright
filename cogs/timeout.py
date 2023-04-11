@@ -1,6 +1,5 @@
 from discord.ext import commands
 from discord import app_commands
-import random
 import datetime
 import discord
 
@@ -16,7 +15,7 @@ class timeout(commands.Cog):
         ]
     )
     @app_commands.command(name="timeout", description="メンバーをミュートできます。")
-    @app_commands.describe(member="ミュートしたい相手を選んでください。",timelimit="ミュートしたい時間を入力してください。")
+    @app_commands.describe(member="ミュートしたい相手を選んでください。",time="ミュートしたい時間を入力してください。",option="分数か秒数を選んでください。")
     @app_commands.checks.has_permissions(mute_members=True)
     async def timeout(self, i: discord.Interaction, member: discord.Member, time: str, option: str):
         timelimit = f"{time}{option}"
