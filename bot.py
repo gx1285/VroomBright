@@ -1,6 +1,13 @@
-from discord.ext import commands, tasks
-from discord import Intents, Status, Activity, ActivityType, Game, HTTPException
+from discord import (
+    Intents, 
+    Status, 
+    Activity, 
+    ActivityType, 
+    Game, 
+    HTTPException
+)
 from itertools import cycle
+from discord.ext import commands, tasks
 from os import environ, listdir
 from datetime import datetime
 from webserver import keep_alive
