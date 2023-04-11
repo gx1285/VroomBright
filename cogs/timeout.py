@@ -8,11 +8,18 @@ import discord
 class timeout(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot: commands.Bot = bot
-
+    
+    @app_commands.choices(
+        option=[
+            app_commands.Choice(name="分数", value="m"),
+            app_commands.Choice(name="秒数", value="s")
+        ]
+    )
     @app_commands.command(name="timeout", description="メンバーをミュートできます。")
-    @app_commands.describe(member="ミュートしたい相手を選んでください。",timelimit="ミュートしたい時間を入力してください。mで分数、sで秒数できます。（それぞれ別）")
+    @app_commands.describe(member="ミュートしたい相手を選んでください。",timelimit="ミュートしたい時間を入力してください。")
     @app_commands.checks.has_permissions(mute_members=True)
-    async def timeout(self, i: discord.Interaction, member: discord.Member, timelimit: str):
+    async def timeout(self, i: discord.Interaction, member: discord.Member, time: str, option: str):
+        timelimit = f"{time}{option}"
         if "s" in timelimit:
           gettime = timelimit.strip("s")
           if int(gettime) > 2678400:
