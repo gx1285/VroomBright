@@ -20,7 +20,7 @@ class calc(commands.Cog):
     )
     @app_commands.command(name="calc", description="計算します。")
     @app_commands.describe(num1="値を入力してください。", num2="値を入力してください。", mode="計算したいモードを選んでください。")
-    async def calc(self, i: discord.Interaction, num1: str, num2: str, mode: str):
+    async def calc(self, i: discord.Interaction, num1: int, num2: int, mode: str):
         response = requests.get(f"http://api.wolframalpha.com/v2/query?appid={app_id}&input={num1}{mode}{num2}&output=json")
         result = response.json()['queryresult']['pods'][1]['subpods'][0]['plaintext']
         conf_embed = discord.Embed(title="計算結果", color=discord.Color.green())
