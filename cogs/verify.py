@@ -7,7 +7,7 @@ def verify_db(key, data):
     db[f"verify_1_db_{key}"] = data
 
 def verify_db_get(key):
-    return db[f"verify_1_db{key}"]
+    return db[f"verify_1_db_{key}"]
 
 class Button1(discord.ui.Button):
     def __init__(self):
