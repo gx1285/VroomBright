@@ -14,6 +14,13 @@ class report(commands.Cog):
         await channel.send(f"{str(report_description)} - {i.user}|{i.user.id}")
         await i.response.send_message("報告しました。ご協力ありがとうございます。", ephemeral=True)
 
+    @app_commands.command(name="feature_suggestion", description="機能提案をします。")
+    @app_commands.describe(suggestion_description="提案する内容を入力してください。")
+    async def featuresuggestion(self, i: discord.Interaction, suggestion_description: str):
+        channel = self.bot.get_channel(1095609040589037648)
+        await channel.send(f"{str(suggestion_description)} - {i.user}|{i.user.id}")
+        await i.response.send_message("提案しました。ご協力ありがとうございます。", ephemeral=True)
+
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(report(bot))
