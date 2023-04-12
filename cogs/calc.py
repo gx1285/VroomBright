@@ -1,10 +1,6 @@
 from discord.ext import commands
 from discord import app_commands
-import requests
-from os import environ
 import discord
-
-app_id = environ['appid']
 
 class calc(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -14,15 +10,21 @@ class calc(commands.Cog):
         mode=[
             app_commands.Choice(name="足し算", value="+"),
             app_commands.Choice(name="引き算", value="-"),
-            app_commands.Choice(name="掛け算", value="x"),
+            app_commands.Choice(name="掛け算", value="*"),
             app_commands.Choice(name="割り算", value="/")
         ]
     )
     @app_commands.command(name="calc", description="計算します。")
     @app_commands.describe(num1="値を入力してください。", num2="値を入力してください。", mode="計算したいモードを選んでください。")
     async def calc(self, i: discord.Interaction, num1: int, num2: int, mode: str):
-        response = requests.get(f"http://api.wolframalpha.com/v2/query?appid={app_id}&input={num1}{mode}{num2}&output=json")
-        result = response.json()['queryresult']['pods'][1]['subpods'][0]['plaintext']
+        if mode == '+':
+            result = num1 + num2
+        elif mode == '-':
+            result = num1 - num2
+        elif mode == '*':
+            result = num1 * num2
+        elif mode == '/':
+            result = num1 / num2
         conf_embed = discord.Embed(title="計算結果", color=discord.Color.green())
         conf_embed.add_field(name="結果", value=result)
   
