@@ -53,9 +53,6 @@ class weather(commands.Cog):
                     embed.add_field(
                         name=f["date"] + "の天気。", value="天気は" + f["telop"] + "です。"
                     )
-                    embed.add_field(
-                        name=f["date"] + "の風の強さ。", value="風の強さは" + f["wind"] + "です。"
-                    )
                     await i.response.send_message(embed=embed)
                 else:
                     await i.response.send_message("取得できません。")
