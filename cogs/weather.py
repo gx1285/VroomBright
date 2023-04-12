@@ -53,9 +53,9 @@ class weather(commands.Cog):
                     embed.add_field(
                         name=f["date"] + "の天気。", value="天気は" + f["telop"] + "です。"
                     )
-                    await i.response.send_message(embed=embed)
+                    await i.response.send_message(embed=embed, ephemeral=True)
                 else:
-                    await i.response.send_message("取得できません。")
+                    await i.response.send_message("取得できません。", ephemeral=True)
 
 
 async def setup(bot: commands.Bot) -> None:
