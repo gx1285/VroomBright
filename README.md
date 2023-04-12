@@ -7,7 +7,7 @@
 <a href="https://github.com/Aroko001/VroomBright/releases/tag/1.0.0">
   <img src="https://img.shields.io/badge/VroomBright-v1.0.0-blue" />
 </a>
-
+<br>
 A Discord Bot.
   
 </div>
