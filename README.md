@@ -19,3 +19,6 @@ A Discord Bot.
 
 ## 招待
 https://dsc.gg/vbinvite
+
+## 本当のウェブサイト
+https://aroko001.github.io/VroomBright/Website/index.html
