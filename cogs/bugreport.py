@@ -10,7 +10,7 @@ class report(commands.Cog):
     @app_commands.command(name="bugreport", description="バグ報告をします。")
     @app_commands.describe(report_description="バグ報告する内容を入力してください。")
     async def bugreport(self, i: discord.Interaction, report_description: str):
-        channel = self.get_channel(1095604986051842138)
+        channel = self.bot.get_channel(1095604986051842138)
         await channel.send(f"{str(report_description)} - {i.user}|{i.user.id}")
         await i.response.send_message("報告しました。ご協力ありがとうございます。", ephemeral=True)
 
